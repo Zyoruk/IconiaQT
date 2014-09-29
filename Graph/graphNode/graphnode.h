@@ -1,7 +1,7 @@
 #ifndef GRAPHNODE_H
 #define GRAPHNODE_H
-#include "src/dataStructures/interfaceNode.h"
-#include "src/dataStructures/SimpleList/SimpleList.h"
+#include "interfaceNode.h"
+#include "SimpleList/SimpleList.h"
 
 template <typename K>
 /*!

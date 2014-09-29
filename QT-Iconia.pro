@@ -14,7 +14,10 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    detector.cpp
+    detector.cpp \
+    drawingFigures/drawingfigures.cpp \
+    drawingFigures/figuresknowledge.cpp \
+    popup.cpp
 
 HEADERS  += mainwindow.h \
     detector.h \
@@ -23,9 +26,14 @@ HEADERS  += mainwindow.h \
     SimpleList/SimpleList.h \
     SimpleList/Node/SimpleListNode.h \
     stack/stack.h \
-    stack/stackNode.h
+    stack/stackNode.h \
+    drawingFigures/drawingfigures.h \
+    drawingFigures/figuresknowledge.h \
+    popup.h \
+    interfaceNode.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    popup.ui
 
 INCLUDEPATH += /usr/local/include/opencv
 LIBS += -L/usr/local/lib

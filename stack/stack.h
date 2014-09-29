@@ -1,7 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "src/dataStructures/stack/stackNode.h"
+#include "stack/stackNode.h"
 template <typename K>
 class Stack{
 public:

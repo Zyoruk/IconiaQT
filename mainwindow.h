@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "drawingFigures/drawingfigures.h"
+#include "drawingFigures/figuresknowledge.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,7 +16,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-
+    figuresKnowledge* programKnowledge;
 private slots:
     void on_pushButton_clicked();
 

@@ -1,6 +1,6 @@
 #ifndef STACKNODE_Hp
 #define STACKNODE_H
-#include "src/dataStructures/interfaceNode.h"
+#include "interfaceNode.h"
 template <typename K>
 class StackNode : public interfaceNode<K>{
 public:

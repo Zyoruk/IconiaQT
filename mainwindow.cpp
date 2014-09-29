@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include "detector.h"
+#include "Graph/graph.h"
+#include "drawingFigures/drawingfigures.h"
 
 using namespace std;
 
@@ -12,6 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    this->programKnowledge = new figuresKnowledge();
+    this->programKnowledge->add(4,"RECT");
+    this->programKnowledge->add(3,"TRI");
+    this->programKnowledge->add(5,"PENTA");
+    this->programKnowledge->add(2,"LINE");
     ui->setupUi(this);
 }
 
@@ -27,7 +34,7 @@ void MainWindow::on_pushButton_2_clicked()
     ui->pathline->setText(filename);
     QPixmap img(filename);
     ui->preview->setPixmap(img);
-    detector* detect = new detector(&filename);
+    detector* detect = new detector(&filename,this->programKnowledge);
     detect->doStuff();
 
 }

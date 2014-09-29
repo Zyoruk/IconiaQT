@@ -1,8 +1,8 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-#include "src/dataStructures/Graph/graphNode/graphnode.h"
-#include "src/dataStructures/SimpleList/SimpleList.h"
-#include "src/dataStructures/stack/stack.h"
+#include "Graph/graphNode/graphnode.h"
+#include "SimpleList/SimpleList.h"
+#include "stack/stack.h"
 #include "iostream"
 
 template <typename K>
@@ -66,7 +66,9 @@ public:
      * \return boolean if it was able to move from A to B.
      */
     bool moveAB(K nodeA, K nodeB);
-private:
+
+    SimpleList<K>* getElements();
+protected:
     /*!
      * \brief _GraphNodes simple linked list containing the pointers to the nodes.
      */
@@ -235,7 +237,10 @@ void Graph<K>::searchforPaths(GraphNode<K> *pNodeA, GraphNode<K> *pNodeB, Simple
         }
     }
 }
-
+template <typename K>
+SimpleList<K>* Graph<K>::getElements(){
+    return this->_elements;
+}
 
 
 
