@@ -1,6 +1,6 @@
 #ifndef GRAPH_H
 #define GRAPH_H
-#include "Graph/graphNode/graphnode.h"
+#include "graphnode.h"
 #include "SimpleList/SimpleList.h"
 #include "stack/stack.h"
 #include "iostream"

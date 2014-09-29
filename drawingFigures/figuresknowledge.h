@@ -1,5 +1,5 @@
-#ifndef FIGURESdrawingFiguresNOWLEDGE_H
-#define FIGURESdrawingFiguresNOWLEDGE_H
+#ifndef FIGURESNOWLEDGE_H
+#define FIGURESNOWLEDGE_H
 #include "Graph/graph.h"
 #include "drawingfigures.h"
 #include "SimpleList/SimpleList.h"
