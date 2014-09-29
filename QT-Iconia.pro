@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     detector.cpp \
     drawingFigures/drawingfigures.cpp \
     drawingFigures/figuresknowledge.cpp \
-    popup.cpp
+    popup.cpp \
+    knowledge/loadknowledge.cpp
 
 HEADERS  += mainwindow.h \
     detector.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     drawingFigures/drawingfigures.h \
     drawingFigures/figuresknowledge.h \
     popup.h \
-    interfaceNode.h
+    interfaceNode.h \
+    knowledge/loadknowledge.h
 
 FORMS    += mainwindow.ui \
     popup.ui

@@ -72,7 +72,7 @@ bool figuresKnowledge::connect(int pNodeA, int pNodeB) {
         return false;
     } else {
         int indexA = this->vertexes->indexOf(pNodeA);
-        int indexB = this->vertexes->indexOf(pNodeA);
+        int indexB = this->vertexes->indexOf(pNodeB);
         drawingFigures* nodeA= *this->figures->elementAt(indexA)->getElement();
         drawingFigures* nodeB= *this->figures->elementAt(indexB)->getElement();
         nodeA->connectTo(nodeB);
@@ -85,45 +85,48 @@ bool figuresKnowledge::moveAB(int pNodeA, int pNodeB) {
     int indexB = this->vertexes->indexOf(pNodeB);
     drawingFigures* nodeA= *this->figures->elementAt(indexA)->getElement();
     drawingFigures* nodeB= *this->figures->elementAt(indexB)->getElement();
-    SimpleList<drawingFigures*>* solution = new SimpleList<drawingFigures*>();
-    SimpleList<drawingFigures*>* closed = new SimpleList<drawingFigures*>();
+    SimpleList<int>* solution = new SimpleList<int>();
+    SimpleList<int>* closed = new SimpleList<int>();
     Stack<drawingFigures* >* path = new Stack<drawingFigures* >();
     if (nodeA->getConnections()->getLenght() == 0){
         return false;
     }
+
     this->searchforPaths(nodeA,nodeB,solution,path,closed);
-//    Stack<drawingFigures*>* temp =  new Stack<drawingFigures* >();
-//    while (solution->getLenght() !=0){
-//        temp->push(*solution->getHead()->getElement());
-//        solution->deleteHead();
-//    }
+    cout << "solution lenght" << solution->getLenght();
+    Stack<int>* temp =  new Stack<int>();
+    while (solution->getLenght() !=0){
+        temp->push(*solution->getHead()->getElement());
+        solution->deleteHead();
+    }
 
-//    SimpleList<drawingFigures* >* newsolution = new SimpleList<drawingFigures* >();
-//    while (temp->getLenght() != 0){
-//        drawingFigures* tp = *temp->pop()->getElement();
-//        newsolution->append(tp);
-//    }
+    SimpleList<int >* newsolution = new SimpleList<int >();
+    while (temp->getLenght() != 0){
+        int tp = *temp->pop()->getElement();
+        newsolution->append(tp);
+    }
 
-//    //revisar solucion
-//    if(newsolution->getLenght() == 1 || newsolution->getLenght() == 0){
-//        return false;
-//    }else if ((*newsolution->getHead()->getElement())->getVertexes() == nodeA->getVertexes() &&
-//              (*newsolution->getTail()->getElement())->getVertexes() == nodeB->getVertexes()){
-//        return true;
-//    }else{
-//        return false;
-//    }
+    newsolution->describe();
+    //revisar solucion
+    if(newsolution->getLenght() == 1 || newsolution->getLenght() == 0){
+        return false;
+    }else if ((*newsolution->getHead()->getElement()) == nodeA->getVertexes() &&
+              (*newsolution->getTail()->getElement()) == nodeB->getVertexes()){
+        return true;
+    }else{
+        return false;
+    }
 }
 
-void figuresKnowledge::searchforPaths(drawingFigures *pNodeA, drawingFigures* pNodeB, SimpleList<drawingFigures*>* pList, Stack<drawingFigures* >* path, SimpleList<drawingFigures* >* closed){
+void figuresKnowledge::searchforPaths(drawingFigures *pNodeA, drawingFigures* pNodeB, SimpleList<int>* pList, Stack<drawingFigures* >* path, SimpleList<int>* closed){
     path->push(pNodeA);
     //Hay coneccion con el nodo final
     if ((*path->top()->getElement())->existsConnection(pNodeB)){
-        path->push(pNodeB);
+        path->push(pNodeB);        
         //armar solucion
         while (path->getLenght() != 0){
             drawingFigures* temp = *path->pop()->getElement();
-            pList->append(temp);
+            pList->append(temp->getVertexes());
         }
     //El nodo no tiene conecciones
     } else if((*path->top()->getElement())->getConnections()->getLenght() == 0){
@@ -132,7 +135,7 @@ void figuresKnowledge::searchforPaths(drawingFigures *pNodeA, drawingFigures* pN
             this->searchforPaths(*path->top()->getElement(), pNodeB, pList, path, closed);
         }
     //El nodo existe en la lista de elementos cerrados
-    } else if (closed->ifExists(*path->top()->getElement())){
+    } else if (closed->ifExists((*path->top()->getElement())->getVertexes())){
         path->pop();
         if ( path->getLenght() != 0){
             this->searchforPaths(*path->top()->getElement(), pNodeB, pList, path, closed);
@@ -143,10 +146,12 @@ void figuresKnowledge::searchforPaths(drawingFigures *pNodeA, drawingFigures* pN
         //El nodo tiene conecciones
         while (temp->getLenght() != 0){
             //La coneccion existe en la lista de elementos cerrados, se elimina
-            if (closed->ifExists(*temp->getHead()->getElement() )){
+            if (closed->ifExists((*temp->getHead()->getElement())->getVertexes() )){
                 temp->deleteHead();
             //Se corre el programa con el nodo obtenido en la coneccion
             } else {
+               // cout << (*temp->getHead()->getElement())->getVertexes();
+
                 this->searchforPaths(*temp->getHead()->getElement(), pNodeB, pList, path, closed);
                 temp->deleteHead();
             }

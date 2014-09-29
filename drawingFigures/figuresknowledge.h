@@ -79,8 +79,8 @@ private:
      * \param closed
      */
     void searchforPaths(drawingFigures *pNodeA, drawingFigures *pNodeB,
-                        SimpleList<drawingFigures*>* pList, Stack<drawingFigures* >* path,
-                        SimpleList<drawingFigures*>* closed);
+                        SimpleList<int>* pList, Stack<drawingFigures* >* path,
+                        SimpleList<int>* closed);
     SimpleList<int>* vertexes;
     SimpleList<drawingFigures*>* figures;
 };

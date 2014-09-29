@@ -187,6 +187,7 @@ bool Graph<K>::moveAB(K nodeA, K nodeB){
     }
     this->searchforPaths(tempA,tempB,solution,path,closed);
 
+    newsolution->describe();
     //revisar solucion
     if(newsolution->getLenght() == 1 || newsolution->getLenght() == 0){
         return false;

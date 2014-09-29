@@ -5,8 +5,7 @@
 #include <iostream>
 #include <string>
 #include "detector.h"
-#include "Graph/graph.h"
-#include "drawingFigures/drawingfigures.h"
+#include "knowledge/loadknowledge.h"
 
 using namespace std;
 
@@ -14,11 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //Initialize knowledge.
     this->programKnowledge = new figuresKnowledge();
-    this->programKnowledge->add(4,"RECT");
-    this->programKnowledge->add(3,"TRI");
-    this->programKnowledge->add(5,"PENTA");
-    this->programKnowledge->add(2,"LINE");
+    loadKnowledge loadPK = loadKnowledge(this->programKnowledge);
     ui->setupUi(this);
 }
 
