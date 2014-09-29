@@ -17,7 +17,13 @@ SOURCES += main.cpp\
     detector.cpp
 
 HEADERS  += mainwindow.h \
-    detector.h
+    detector.h \
+    Graph/graph.h \
+    Graph/graphNode/graphnode.h \
+    SimpleList/SimpleList.h \
+    SimpleList/Node/SimpleListNode.h \
+    stack/stack.h \
+    stack/stackNode.h
 
 FORMS    += mainwindow.ui
 
