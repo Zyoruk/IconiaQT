@@ -88,22 +88,24 @@ int detector::doStuff()
         // Skip small or non-convex objects
         if (std::fabs(cv::contourArea(contours[i])) < 100 || !cv::isContourConvex(approx))
             continue;
-        SimpleList<int>* elementsofKnowledge = this->programKnowledge->getElements();
-        if(elementsofKnowledge->ifExists((int)approx.size())){
-            int j = elementsofKnowledge->indexOf((int)approx.size());
+        if(this->programKnowledge->getElements()->ifExists((int)approx.size())){
+            int j = this->programKnowledge->getElements()->indexOf((int)approx.size());
+            //cout <<(*this->programKnowledge->getFigures()->elementAt(j)->getElement())->getID();
             setLabel(dst,(*this->programKnowledge->getFigures()->elementAt(j)->getElement())->getID(), contours[i]);
         }else{
+            cout << "Entra Aca";
             //ENVIARLO A COSAS CONOCIDAS
             popup* newPop = new popup();
-            int i = approx.size();
-            string str = "";
+            int K = approx.size();
+            string tempstr = "A figure was found. It contains:";
             std::stringstream sstm;
-            sstm << str << i;
-            str = sstm.str();
-            newPop->setLabel(QString::fromStdString(str));
-            string s = newPop->getString();
-            setLabel(dst, (string)s, contours[i]); // Triangles
+            sstm << tempstr << K <<" angles";
+            tempstr = sstm.str();
+            newPop->setLabel(QString::fromStdString(tempstr));
             newPop->show();
+            string s = newPop->getString();
+            this->programKnowledge->add(K , s);
+
         }
     }
 
